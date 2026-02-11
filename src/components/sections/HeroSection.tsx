@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Heart } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import AuthModal from "@/components/AuthModal";
-import dashboardPreview from "@/assets/homepage-1.webp";
+
 import { ReportGenerationLoader } from "@/components/ReportGenerationLoader";
 
 // Domain validation regex
@@ -288,9 +288,9 @@ const HeroSection = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             {/* Dashboard with shadow */}
-            <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl shadow-black/20">
+            <div className="relative">
               <img
-                src={dashboardPreview}
+                src="https://res.cloudinary.com/dvu1dtynf/image/upload/v1770822039/web_1_2_nepslq.webp"
                 alt="Brainito Marketing Dashboard showing AI Trust Score, traffic analytics, and competitor insights"
                 className="w-full h-auto"
                 loading="lazy"
