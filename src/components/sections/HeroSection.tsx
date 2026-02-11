@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Heart, Loader2 } from "lucide-react";
+import { ArrowRight, Heart } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import AuthModal from "@/components/AuthModal";
 import dashboardPreview from "@/assets/homepage-1.webp";
+import { ReportGenerationLoader } from "@/components/ReportGenerationLoader";
 
 // Domain validation regex
 const domainRegex = /^(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
@@ -251,20 +252,15 @@ const HeroSection = () => {
                 disabled={loading}
               >
                 <span className="flex items-center justify-center font-bold">
-                  {loading ? (
-                    <>
-                      <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 mr-2 animate-spin" />
-                      Analyzing...
-                    </>
-                  ) : (
-                    <>
-                      Get Started
-                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-                    </>
-                  )}
+
+                  Get Started
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+
                 </span>
               </Button>
             </form>
+            {/* Full Screen Loader */}
+            {loading && <ReportGenerationLoader />}
 
             {/* Error Message */}
             {errorMessage && (
