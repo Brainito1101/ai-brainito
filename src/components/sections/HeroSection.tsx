@@ -49,20 +49,6 @@ const HeroSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // ✅ CHECK IF USER IS LOGGED IN
-    if (!user) {
-      // Store website URL and email in sessionStorage for auto-fill after login
-      // This improves UX by avoiding asking users to re-enter their website
-      if (websiteUrl) {
-        sessionStorage.setItem('pendingWebsite', websiteUrl);
-      }
-      if (email) {
-        sessionStorage.setItem('pendingEmail', email);
-      }
-      setIsAuthModalOpen(true);
-      return;
-    }
-
     // Clear all previous errors
     setErrorMessage("");
     setWebsiteError("");
@@ -78,55 +64,42 @@ const HeroSection = () => {
     setLoading(true);
     const cleanedURL = `https://${domain}`;
 
-    // Get access token (if user is logged in)
-    const accessToken = localStorage.getItem("access_token");
-
     // API base URL - use environment variable or fallback
     const API_BASE_URL = import.meta.env.VITE_API_URL || "https://app.brainito.com/api";
     // Dashboard URL - use environment variable or fallback
     const DASHBOARD_URL = import.meta.env.VITE_DASHBOARD_URL || "https://app.brainito.com";
 
     try {
-      // Check if user already has a report (free limit = 1)
-      if (accessToken) {
-        try {
-          const reportsRes = await fetch(`${API_BASE_URL}/user-reports/`, {
-            headers: {
-              "Authorization": `Bearer ${accessToken}`,
-            },
-          });
+      // GUEST MODE: Generate report without login
+      // If user is logged in, use authenticated endpoint; otherwise use guest endpoint
+      const endpoint = user
+        ? `${API_BASE_URL}/analyze/`
+        : `${API_BASE_URL}/analyze-guest/`;
 
-          if (reportsRes.ok) {
-            const reportsData = await reportsRes.json();
-            if (reportsData.success && Array.isArray(reportsData.reports) && reportsData.reports.length >= 1) {
-              // User already has at least one report: redirect to dashboard (brainito-grow-hub-main)
-              window.location.href = `${DASHBOARD_URL}/dashboard?free_report_used=1`;
-              return;
-            }
-          }
-        } catch (checkError) {
-          console.error("Error checking existing reports:", checkError);
-          // Fail open: allow analyze to proceed if check fails
-        }
+      const accessToken = user ? localStorage.getItem("access_token") : null;
+
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+      };
+
+      if (accessToken) {
+        headers["Authorization"] = `Bearer ${accessToken}`;
       }
 
-      const res = await fetch(`${API_BASE_URL}/analyze/`, {
+      const res = await fetch(endpoint, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          ...(accessToken && { "Authorization": `Bearer ${accessToken}` })
-        },
+        headers,
         body: JSON.stringify({
           website: cleanedURL,
           email: email.trim(),
-          source: "From Website",
+          source: user ? "From Website" : "From Website (Guest)",
         }),
       });
 
       const data = await res.json();
 
-      // Handle 401 Unauthorized (token expired)
-      if (res.status === 401) {
+      // Handle 401 Unauthorized (token expired) - only relevant for logged-in users
+      if (res.status === 401 && user) {
         logout();
         setIsAuthModalOpen(true);
         setErrorMessage("Your session expired. Please login again.");
@@ -158,9 +131,11 @@ const HeroSection = () => {
         return;
       }
 
-      if (data.result) {
-        // Redirect to the dashboard (brainito-grow-hub-main) with analysis_id
-        window.location.href = `${DASHBOARD_URL}/dashboard?analysis_id=${data.analysis_id}`;
+      if (data.result || data.success) {
+        // Redirect to the dashboard with analysis_id
+        // Add guest=true parameter if not logged in
+        const guestParam = user ? "" : "&guest=true";
+        window.location.href = `${DASHBOARD_URL}/dashboard?analysis_id=${data.analysis_id}${guestParam}`;
       } else {
         setErrorMessage("Something went wrong. Please try again.");
       }
