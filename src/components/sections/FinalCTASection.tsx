@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import AuthModal from "@/components/AuthModal";
@@ -7,7 +7,7 @@ import { useAuth } from "@/contexts/AuthContext";
 
 const FinalCTASection = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const navigate = useNavigate();
+
   const { user } = useAuth();
 
   // Handle Get Started button - redirect if logged in, show modal otherwise
@@ -29,7 +29,7 @@ const FinalCTASection = () => {
 
   // Handle navigation to contact page
   const handleTalkToSales = () => {
-    navigate("/contact");
+    window.open("https://brainito.com/contact", "_blank", "noopener,noreferrer");
   };
 
   return (

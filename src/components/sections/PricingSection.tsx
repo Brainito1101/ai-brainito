@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Check, Loader2 } from "lucide-react";
 import AuthModal from "@/components/AuthModal";
@@ -21,7 +20,6 @@ interface Plan {
 }
 
 const PricingSection = () => {
-  const navigate = useNavigate();
   const { user } = useAuth();
   const { toast } = useToast();
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);

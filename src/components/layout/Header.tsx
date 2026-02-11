@@ -82,7 +82,7 @@ const Header = () => {
               )}
 
               <Button variant="gradient" size="default" asChild>
-                <a href="/hire-marketer">Hire Marketer</a>
+                <a href="https://brainito.com/hire-marketer" target="_blank" rel="noopener noreferrer">Hire Marketer</a>
               </Button>
 
               {/* Profile Dropdown - Only show when logged in */}
@@ -221,7 +221,9 @@ const Header = () => {
 
                 {/* Navigation Links */}
                 <a
-                  href="/diy-marketing-plan"
+                  href="https://brainito.com/diy-marketing-plan"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-muted/50 rounded-md transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -229,7 +231,7 @@ const Header = () => {
                 </a>
 
                 <Button variant="gradient" asChild className="w-full">
-                  <a href="/hire-marketer" onClick={() => setIsMenuOpen(false)}>Hire Marketer</a>
+                  <a href="https://brainito.com/hire-marketer" target="_blank" rel="noopener noreferrer" onClick={() => setIsMenuOpen(false)}>Hire Marketer</a>
                 </Button>
 
                 {/* User Actions - Only show when logged in */}

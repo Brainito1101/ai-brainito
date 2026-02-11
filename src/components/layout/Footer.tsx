@@ -12,24 +12,24 @@ const Footer = () => {
 
   const footerLinks = {
     product: [
-      { name: "DIY Marketing Plan", href: "/diy-marketing-plan" },
-      { name: "Hire Marketer", href: "/hire-marketer" },
-      { name: "Pricing", href: "/pricing" },
+      { name: "DIY Marketing Plan", href: "https://brainito.com/diy-marketing-plan" },
+      { name: "Hire Marketer", href: "https://brainito.com/hire-marketer" },
+      { name: "Pricing", href: "https://brainito.com/pricing" },
     ],
     company: [
-      { name: "About", href: "/about" },
-      { name: "Contact", href: "/contact" },
+      { name: "About", href: "https://brainito.com/about" },
+      { name: "Contact", href: "https://brainito.com/contact" },
     ],
     resources: [
 
-      { name: "Case Studies", href: "/case-studies" },
+      { name: "Case Studies", href: "https://brainito.com/case-studies" },
       { name: "Help", href: "https://help.brainito.com" },
     ],
     legal: [
-      { name: "Privacy Policy", href: "/privacy-policy" },
-      { name: "Terms of Service", href: "/terms" },
-      { name: "Refund Policy", href: "/refund-policy" },
-      { name: "Data & Cookie Policy", href: "/cookie-policy" },
+      { name: "Privacy Policy", href: "https://brainito.com/privacy-policy" },
+      { name: "Terms of Service", href: "https://brainito.com/terms" },
+      { name: "Refund Policy", href: "https://brainito.com/refund-policy" },
+      { name: "Data & Cookie Policy", href: "https://brainito.com/cookie-policy" },
     ],
   };
 
@@ -170,6 +170,8 @@ const Footer = () => {
                   <li key={link.name}>
                     <a
                       href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-background/70 hover:text-accent transition-colors duration-300 text-sm"
                     >
                       {link.name}
@@ -187,6 +189,8 @@ const Footer = () => {
                   <li key={link.name}>
                     <a
                       href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-background/70 hover:text-accent transition-colors duration-300 text-sm"
                     >
                       {link.name}
@@ -228,7 +232,8 @@ const Footer = () => {
                   <li key={link.name}>
                     <a
                       href={link.href}
-
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-background/70 hover:text-accent transition-colors duration-300 text-sm"
                     >
                       {link.name}
