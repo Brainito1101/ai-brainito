@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brainito - AI Marketing Audit & Strategy</title>
+  <meta name="description"
+    content="Get an instant AI marketing audit and strategy. Turn your website into a growth engine with personalized insights in seconds. No credit card needed." />
+  <meta name="author" content="Brainito Inc." />
+
+  <meta property="og:title" content="Brainito - AI Marketing Audit & Strategy" />
+  <meta property="og:description"
+    content="Get an instant AI marketing audit and strategy. Turn your website into a growth engine with personalized insights in seconds." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://brainito.com" />
+  <meta property="og:image" content="https://brainito.com/favicon.ico" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@brainito" />
+  <meta name="twitter:title" content="Brainito - AI Marketing Audit & Strategy" />
+  <meta name="twitter:description"
+    content="Get an instant AI marketing audit and strategy. Turn your website into a growth engine with personalized insights in seconds." />
+  <meta name="twitter:image" content="https://brainito.com/favicon.ico" />
+
+  <!-- Hotjar Tracking Code for www.brainito.com -->
+  <script>
+    (function (h, o, t, j, a, r) {
+      h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+      h._hjSettings = { hjid: 2342082, hjsv: 6 };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script'); r.async = 1;
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WDVX7TD81Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-WDVX7TD81Y');
+  </script>
+
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17618812380"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'AW-17618812380');
+  </script>
+</head>
+
+<body>
+  <!-- CRITICAL: Handle cross-domain logout BEFORE React loads -->
+  <script>
+    // This script runs synchronously before React initializes
+    // It detects the ?logout=true parameter from dashboard logout redirect
+    // and immediately clears all auth data to prevent race conditions
+    (function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('logout') === 'true') {
+        console.log('[Pre-React] Logout parameter detected - clearing all auth data');
+
+        // Clear all storage immediately
+        localStorage.clear();
+        sessionStorage.clear();
+
+        // Clean up the URL parameter
+        urlParams.delete('logout');
+        const newUrl = window.location.pathname +
+          (urlParams.toString() ? '?' + urlParams.toString() : '');
+        window.history.replaceState({}, '', newUrl);
+
+        console.log('[Pre-React] Auth data cleared, URL cleaned');
+      }
+    })();
+  </script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>
