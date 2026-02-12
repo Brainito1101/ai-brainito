@@ -109,7 +109,7 @@ export function ReportGenerationLoader() {
     const currentStepData = loadingSteps[Math.min(currentStep, loadingSteps.length - 1)];
 
     return (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-xl animate-in fade-in duration-500">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-xl animate-in fade-in duration-500">
             <div className="w-full max-w-md mx-4 p-8 rounded-3xl border border-white/10 shadow-2xl flex flex-col items-center text-center relative overflow-hidden bg-white/10 backdrop-blur-md">
 
                 {/* Glowing Background Orbs inside the card */}

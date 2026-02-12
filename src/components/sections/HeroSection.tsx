@@ -104,6 +104,7 @@ const HeroSection = () => {
         logout();
         setIsAuthModalOpen(true);
         setErrorMessage("Your session expired. Please login again.");
+        setLoading(false);
         return;
       }
 
@@ -129,6 +130,7 @@ const HeroSection = () => {
           // Handle other types of errors
           setErrorMessage(data.message || "Something went wrong. Please try again.");
         }
+        setLoading(false);
         return;
       }
 
@@ -139,12 +141,11 @@ const HeroSection = () => {
         window.location.href = `${DASHBOARD_URL}/dashboard?analysis_id=${data.analysis_id}${guestParam}`;
       } else {
         setErrorMessage("Something went wrong. Please try again.");
+        setLoading(false);
       }
     } catch (error) {
       console.error("Error:", error);
       setErrorMessage("Server error. Please try again later.");
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -168,6 +169,8 @@ const HeroSection = () => {
 
   return (
     <>
+      {/* Full Screen Loader - Moved to root to ensure it overlays everything */}
+      {loading && <ReportGenerationLoader />}
       {/* Auth Modal */}
       <AuthModal
         isOpen={isAuthModalOpen}
@@ -259,8 +262,7 @@ const HeroSection = () => {
                 </span>
               </Button>
             </form>
-            {/* Full Screen Loader */}
-            {loading && <ReportGenerationLoader />}
+
 
             {/* Error Message */}
             {errorMessage && (
@@ -290,7 +292,7 @@ const HeroSection = () => {
             {/* Dashboard with shadow */}
             <div className="relative">
               <img
-                src="https://res.cloudinary.com/dvu1dtynf/image/upload/v1770822039/web_1_2_nepslq.webp"
+                src="https://res.cloudinary.com/dvu1dtynf/image/upload/v1770886026/previewpng_czxbdl.webp"
                 alt="Brainito Marketing Dashboard showing AI Trust Score, traffic analytics, and competitor insights"
                 className="w-full h-auto"
                 loading="lazy"
